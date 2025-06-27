@@ -2,7 +2,7 @@
   "name": "yh-website",
   "version": "1.0.0",
   "description": "yh's personal website with Supabase integration",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
