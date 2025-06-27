@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yh's website</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -114,6 +115,44 @@
         </div>
     </div>
 
-    <script type="module" src="./main.js"></script>
+    <script>
+        // Supabase configuration
+        const supabaseUrl = 'https://olfnhbxaicjgmtytkykm.supabase.co'
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sZm5oYnhhaWNqZ210eXRreWttIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5OTQ0NTgsImV4cCI6MjA2NjU3MDQ1OH0.y3U7Idsx3Hv8hH0H4tGkSLoXS61K-uc5jmbpeTu8XJw'
+        
+        // Create Supabase client
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey)
+
+        // Function to check database connection
+        async function checkConnection() {
+            const statusElement = document.getElementById('db-status')
+            
+            try {
+                // Try to connect to Supabase
+                const { data, error } = await supabase.from('test').select('*').limit(1)
+                
+                if (error && error.code === 'PGRST116') {
+                    // This error means the table doesn't exist, but connection is working
+                    statusElement.textContent = 'Connected to Supabase! (No test table found)'
+                    statusElement.className = 'status connected'
+                } else if (error) {
+                    throw error
+                } else {
+                    statusElement.textContent = 'Connected to Supabase! Database is working.'
+                    statusElement.className = 'status connected'
+                }
+            } catch (error) {
+                console.error('Database connection error:', error)
+                statusElement.textContent = 'Not connected to Supabase. Please check your credentials.'
+                statusElement.className = 'status disconnected'
+            }
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('yh\'s website loaded!')
+            checkConnection()
+        })
+    </script>
 </body>
 </html> 
