@@ -80,6 +80,45 @@
             border: 1px solid rgba(239, 68, 68, 0.5);
         }
 
+        form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            margin: 0.5rem 0;
+            padding: 0.7rem;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+            max-width: 300px;
+            font-size: 1rem;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.7rem 2rem;
+            border-radius: 5px;
+            border: none;
+            background: #667eea;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        #login-error {
+            color: #f87171;
+            margin-top: 1rem;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -113,6 +152,12 @@
                 Checking connection...
             </div>
         </div>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required />
+            <input type="password" id="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+            <div id="login-error"></div>
+        </form>
     </div>
 
     <script>
@@ -153,6 +198,26 @@
             console.log('yh\'s website loaded!')
             checkConnection()
         })
+
+        // Login logic
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+            errorDiv.textContent = '';
+            const { data, error } = await supabase
+                .from('test')
+                .select('*')
+                .eq('usernames', username)
+                .eq('password', password)
+                .single();
+            if (error || !data) {
+                errorDiv.textContent = "Invalid username or password.";
+            } else {
+                window.location.href = "main.html";
+            }
+        });
     </script>
 </body>
 </html> 
