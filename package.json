@@ -1,0 +1,20 @@
+{
+  "name": "yh-website",
+  "version": "1.0.0",
+  "description": "yh's personal website with Supabase integration",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": ["personal", "website", "supabase"],
+  "author": "yh",
+  "license": "MIT"
+} 
