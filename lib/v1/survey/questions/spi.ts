@@ -1,0 +1,52 @@
+export const questions_SPI = {
+    "SPI-1": "My age group",
+    "SPI-2": "My gender group",
+    "SPI-3": "My sexual orientation",
+    "SPI-4": "My racial group",
+    "SPI-5": "My ethnicity",
+    "SPI-6": "Citizenship of my country",
+    "SPI-7": "The regions where I have lived",
+    "SPI-8": "Education I have received",
+    "SPI-9": "My Workplace/school/organization I've been affiliated with",
+    "SPI-10": "My political views",
+    "SPI-11": "My religion",
+    "SPI-12": "My current living situation",
+    "SPI-13": "My current financial situation",
+    "SPI-14": "My sense of independence and individuality from others",
+    "SPI-15": "My individual preference",
+    "SPI-16": "My abilities and competence",
+    "SPI-17": "My personality",
+    "SPI-18": "My personal values",
+    "SPI-19": "Please select “1” to show you are paying attention to this question"
+}
+
+export const identityNames = {
+    "SPI-1": "Age group",
+    "SPI-2": "Gender group",
+    "SPI-3": "Sexual orientation",
+    "SPI-4": "Racial group belonging",
+    "SPI-5": "Ethnicity",
+    "SPI-6": "Citizenship",
+    "SPI-7": "Regions lived",
+    "SPI-8": "Education this character has received",
+    "SPI-9": "Membership in social groups",
+    "SPI-10": "Political views",
+    "SPI-11": "Religious preference",
+    "SPI-12": "Current living situation",
+    "SPI-13": "Current financial situation",
+    "SPI-14": "Sense of independence",
+    "SPI-15": "Individual preference",
+    "SPI-16": "Abilities and competence",
+    "SPI-17": "Personality",
+    "SPI-18": "Personal values",
+} as { [key: string]: string }
+
+export const importanceLevels = {
+    "1": "not at all important",
+    "2": "slightly important",
+    "3": "somewhat important",
+    "4": "moderately important",
+    "5": "important",
+    "6": "very important",
+    "7": "extremely important",
+} as { [key: string]: string }

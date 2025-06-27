@@ -1,0 +1,13 @@
+import connectMongoDB from '@/lib/mongodb';
+import Essay from '@/models/v1/essay';
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(req: NextRequest) {
+    try {
+        await connectMongoDB();
+        const essays = await Essay.find().sort({ createdAt: -1 });
+        return NextResponse.json({ result: 'success', essays });
+    } catch (error) {
+        return NextResponse.json({ result: 'failed', error });
+    }
+}
