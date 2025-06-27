@@ -202,20 +202,31 @@
         // Login logic
         document.getElementById('login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
+            console.log('[Login] Form submitted');
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorDiv = document.getElementById('login-error');
             errorDiv.textContent = '';
-            const { data, error } = await supabase
-                .from('test')
-                .select('*')
-                .eq('usernames', username)
-                .eq('password', password)
-                .single();
-            if (error || !data) {
-                errorDiv.textContent = "Invalid username or password.";
-            } else {
-                window.location.href = "main.html";
+            console.log('[Login] Username:', username);
+            console.log('[Login] Password:', password);
+            try {
+                const { data, error } = await supabase
+                    .from('test')
+                    .select('*')
+                    .eq('usernames', username)
+                    .eq('password', password)
+                    .single();
+                console.log('[Login] Supabase response:', { data, error });
+                if (error || !data) {
+                    errorDiv.textContent = "Invalid username or password.";
+                    console.log('[Login] Invalid credentials or error:', error);
+                } else {
+                    console.log('[Login] Login successful, redirecting to main.html');
+                    window.location.href = "main.html";
+                }
+            } catch (err) {
+                console.error('[Login] Exception during login:', err);
+                errorDiv.textContent = "An error occurred. Check console.";
             }
         });
     </script>
